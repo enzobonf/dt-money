@@ -8,7 +8,12 @@ export function TransactionsTable() {
 
   useEffect(() => {
     
-    api.get('transactions').then(response => console.log(response.data));
+    async function loadTransactions() {
+        const transactionsApi = await api.get('transactions').then(response => response.data);
+        setTransactions(transactionsApi);
+    }
+
+    loadTransactions();
       
   }, []);
 
